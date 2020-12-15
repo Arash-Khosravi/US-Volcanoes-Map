@@ -41,11 +41,12 @@ def colors(elev):
 for lat, lon, name, elev in coordinats:
     fgv.add_child(folium.Marker(location=[lat, lon], popup= name+' , ' + str(elev), icon=folium.Icon(color=colors(elev)), draggable=False))
 
-### Adding country borders
-fgp = folium.FeatureGroup(name='Population')
-fgp.add_child(folium.GeoJson(data=open('world.json', 'r', encoding='utf-8-sig').read()))
 
-###
+### Definding the Feature Group for Population
+fgp = folium.FeatureGroup(name='Population')
+
+### Adding country borders
+fgp.add_child(folium.GeoJson(data=open('world.json', 'r', encoding='utf-8-sig').read()))
 
 
 #### All FeatureGroups must be added to map as a CHILD
