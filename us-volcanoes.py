@@ -39,7 +39,7 @@ def colors(elev):
 
 # Itirating through zipped info to make markers on map
 for lat, lon, name, elev in coordinats:
-    fg.add_child(folium.Marker(location=[lat, lon], popup= name, icon=folium.Icon(color=colors(elev))))
+    fg.add_child(folium.Marker(location=[lat, lon], popup= name+' , ' + str(elev), icon=folium.Icon(color=colors(elev))))
 
 
 #### All FeatureGroups must be added to map as a CHILD
@@ -47,4 +47,4 @@ map.add_child(fg)
 
 
 #### Saving the map to HTML file
-map.save("Map1.html")
+map.save("volcanoes.html")
