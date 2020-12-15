@@ -20,7 +20,7 @@ map = folium.Map(location=[45.305561, -75.932418],zoom_start=4)
 
 
 #### Making a FeatureGroup for the Map
-fg = folium.FeatureGroup(name= "My Map")
+fgv = folium.FeatureGroup(name= "Volcanoes")
 
 ### Making map colorful by defining the color for each elevation, and call it in forLoop as icon colors
 def colors(elev):
@@ -39,12 +39,18 @@ def colors(elev):
 
 # Itirating through zipped info to make markers on map
 for lat, lon, name, elev in coordinats:
-    fg.add_child(folium.Marker(location=[lat, lon], popup= name+' , ' + str(elev), icon=folium.Icon(color=colors(elev))))
+    fgv.add_child(folium.Marker(location=[lat, lon], popup= name+' , ' + str(elev), icon=folium.Icon(color=colors(elev)), draggable=False))
+
+### Adding country borders
+fgp = folium.FeatureGroup(name='Population')
+fgp.add_child(folium.GeoJson(data=open('world.json', 'r', encoding='utf-8-sig').read()))
+
+###
 
 
 #### All FeatureGroups must be added to map as a CHILD
-map.add_child(fg)
-
+map.add_child(fgv)
+map.add_child(fgp)
 
 #### Saving the map to HTML file
 map.save("volcanoes.html")
